@@ -2,6 +2,8 @@ const fs = require('fs')
 
 const data = require('./data.json')
 
+const { age } = require('./utils.js')
+
 exports.post = function(req, res) {
 
     // validação
@@ -60,12 +62,14 @@ exports.show = function(req, res) {
         return res.send('Instructors not found!')
     }
 
+    // age
+
+    // Alterando os dados
     const instructor = {
         ...foundInstructor,
-        age: "",
-        gender: "",
-        services: "",
-        created_at: ""
+        age: age(foundInstructor.birth),
+        services: foundInstructor.services.split(','),
+        created_at: new Intl.DateTimeFormat('pt-BR').format(foundInstructor.created_at)
     }
 
     // se tiver vai retornar

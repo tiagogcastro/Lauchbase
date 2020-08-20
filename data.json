@@ -2,21 +2,12 @@
   "instructors": [
     {
       "id": 1,
-      "avatar_url": "http://google.com",
+      "avatar_url": "https://source.unsplash.com/collection/8969654/500x500",
       "name": "tiago",
-      "birth": 1083110400000,
+      "birth": 1355270400000,
       "gender": "M",
       "services": "crossfit, musc",
-      "created_at": 1596385927227
-    },
-    {
-      "id": 2,
-      "avatar_url": "http://google.com",
-      "name": "tiago",
-      "birth": -62039088000000,
-      "gender": "M",
-      "services": "crossfit, musc",
-      "created_at": 1597243862092
+      "created_at": 1597938923303
     }
   ]
 }
