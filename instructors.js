@@ -2,7 +2,8 @@ const fs = require('fs')
 
 const data = require('./data.json')
 
-const { age } = require('./utils.js')
+// Desestruturando
+const { age, date } = require('./utils.js')
 
 // show
 exports.show = function(req, res) {
@@ -92,7 +93,14 @@ exports.edit = function (req, res) {
          return res.send('Instructors not found!')
      }
 
-    return res.render('instructors/edit', {instructor : foundInstructor})
+     // organizando os dados em um obj
+     const instructor = {
+         ...foundInstructor,
+         birth: date(foundInstructor.birth) 
+         
+     }
+
+    return res.render('instructors/edit', {instructor })
 }
 
 

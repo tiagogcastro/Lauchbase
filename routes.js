@@ -14,8 +14,10 @@ routes.get('/instructors/create', function(req, res) {
     return res.render('instructors/create')
 })
 
+// ve o id
 routes.get('/instructors/:id', instructors.show)
 
+// para editar
 routes.get('/instructors/:id/edit', instructors.edit)
 
 
