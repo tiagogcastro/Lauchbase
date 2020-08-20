@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+:root {
+    --color-green:#50fa7b;
+    --color-rocket: #7159c1;
+    --color-darktheme: #282a36;
+    --color-amareloM: #f7df1e;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background: var(--color-rocket);
+}    
+
+header {
+    background-color: white;
+    width: 100%;
+    padding: 32px;
+    text-align: center;
+    box-sizing: border-box; /*Leva os elementos ao limite sem estourar com width de 100%*/
+}
+
+.links {
+    font-size: 22px;
+}
+
+.links a + a {
+    margin-left: 32px;
+}
+
+.links a {
+    color: #777;
+    position: relative;
+}
+
+.links a.active {
+    font-weight: bold;
+    color: var(--color-rocket);
+}
+
+.links a:hover {
+    color: var(--color-rocket);
+}
+
+.links a::after {
+    content: "";
+    width: 0;
+    height: 2px;
+    background-color: var(--color-rocket);
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+}
+
+.links a:hover::after {
+    width: 100%;
+    transition: width 200ms ease-in-out ;
+}
+
+/* Card */
+.card {
+    background-color: white;
+    width: 800px;
+    min-height: 400px;
+    margin: 45px auto;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    box-shadow: 0px 2px 6px -2px rgba(0, 0, 0, 0.2);
+
+    /* Animation */
+    animation-name: up 200ms ease;
+}
+
+@keyframes up {
+    from { /*0%*/
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Details */
+.details {
+    padding: 32px;
+}
+
+.details .item {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 16px 0;
+}
+
+.details .item:last-child {
+    border: none;
+}
+.details h3,
+.details .item div:nth-child(1) {
+    line-height: 24px;
+    font-size: 14px;
+    color: #777;
+    letter-spacing: 0.7px;
+    font-weight: normal;
+}
+
+.details .item div:nth-child(2) {
+    color: #555;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.details h3 {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: var(--color-rocket);
+}
+
+.details .item span {
+    padding: 8px 16px;
+    background-color: var(--color-amareloM);
+    border-radius: 16px;
+    color: #777;
+    margin-right: 4px;
+    margin-top: 8px;
+    display: inline-block;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+/* Formulario create.njk */
+input {
+    width: 100%;
+    color: #555;
+    font-weight: bold;
+    font-size: 18px;
+    outline: none;
+}
+
+input[type="radio"] {
+    width: initial;
+    margin-right: 4px;
+}
+
+.label-class:hover{
+    cursor: pointer;
+}
+
+input::placeholder {
+    font-size: 16px;
+    font-weight: normal;
+}
+
+button[type="submit"] {
+    padding: 8px 32px;
+    background-color: var(--color-rocket);
+    color: white;
+    border-radius: 4px;
+    margin-top: 32px;
+    width: 100%;
+    font-size: 16px;
+}
+
+button[type="submit"]:hover {
+    filter: brightness(90%);
+    cursor: pointer;
+}
+
