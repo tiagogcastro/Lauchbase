@@ -4,6 +4,36 @@ const data = require('./data.json')
 
 const { age } = require('./utils.js')
 
+// show
+exports.show = function(req, res) {
+    // req.params
+    const { id } = req.params
+
+    // Vai procurar se tem o id 
+    const foundInstructor = data.instructors.find( (instructor) => {
+        return id == instructor.id
+    })
+
+    // se nao tiver vai ter msg de erro
+    if (!foundInstructor) {
+        return res.send('Instructors not found!')
+    }
+
+    // age
+
+    // Alterando os dados
+    const instructor = {
+        ...foundInstructor,
+        age: age(foundInstructor.birth),
+        services: foundInstructor.services.split(','),
+        created_at: Intl.DateTimeFormat('pt-BR').format(foundInstructor.created_at)
+    }
+
+    // se tiver vai retornar
+    return res.render('instructors/show', { instructor: instructor})
+}   
+
+// Recebendo na pagina instructors os dados do create.
 exports.post = function(req, res) {
 
     // validação
@@ -45,39 +75,26 @@ exports.post = function(req, res) {
             
             return res.redirect('/instructors')
         })
-    }
-    
-// show
-exports.show = function(req, res) {
-    // req.params
-    const { id } = req.params
+}
 
-    // Vai procurar se tem o id 
-    const foundInstructor = data.instructors.find( (instructor) => {
-        return id == instructor.id
-    })
+// edit
+exports.edit = function (req, res) {
+     // req.params
+     const { id } = req.params
 
-    // se nao tiver vai ter msg de erro
-    if (!foundInstructor) {
-        return res.send('Instructors not found!')
-    }
+     // Vai procurar se tem o id 
+     const foundInstructor = data.instructors.find( (instructor) => {
+         return id == instructor.id
+     })
+ 
+     // se nao tiver vai ter msg de erro
+     if (!foundInstructor) {
+         return res.send('Instructors not found!')
+     }
 
-    // age
+    return res.render('instructors/edit', {instructor : foundInstructor})
+}
 
-    // Alterando os dados
-    const instructor = {
-        ...foundInstructor,
-        age: age(foundInstructor.birth),
-        services: foundInstructor.services.split(','),
-        created_at: new Intl.DateTimeFormat('pt-BR').format(foundInstructor.created_at)
-    }
 
-    // se tiver vai retornar
-    return res.render('instructors/show', { instructor: instructor})
-}   
-
-// Recebendo na pagina instructors os dados do create.
-
-// update
 
 // delete
