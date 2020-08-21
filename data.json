@@ -3,36 +3,38 @@
     {
       "id": 1,
       "avatar_url": "http://google.com",
-      "name": "tiago",
-      "birth": -23890291200000,
+      "name": "Tiago Gonçalves",
+      "birth": 1083110400000,
       "gender": "M",
       "services": "crossfit, musc",
-      "created_at": 1597965953840
+      "created_at": 1597978843123
     },
     {
       "id": 2,
       "avatar_url": "http://google.com",
-      "name": "tiago",
-      "birth": -23890291200000,
+      "name": "Tiago Gonçalves",
+      "birth": 1083110400000,
       "gender": "M",
       "services": "crossfit, musc",
-      "created_at": 1597966344190
+      "created_at": 1597978891696
     },
     {
       "id": 3,
       "avatar_url": "http://google.com",
-      "name": "tiago",
-      "birth": 1079740800000,
+      "name": "Tiago Gonçalves",
+      "birth": 1083110400000,
+      "gender": "M",
       "services": "crossfit, musc",
-      "created_at": 1597966358912
+      "created_at": 1597979011692
     },
     {
-      "id": 4,
-      "avatar_url": "http://google.com",
-      "name": "tiago",
-      "birth": 1580688000000,
-      "services": "crossfit, musc",
-      "created_at": 1597966694466
+      "id": "4",
+      "avatar_url": "http://google.coma",
+      "name": "joana",
+      "birth": 1460246400000,
+      "gender": "F",
+      "services": "crossfit, musca",
+      "created_at": 1597979085941
     }
   ]
 }

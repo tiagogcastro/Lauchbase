@@ -20,6 +20,8 @@ routes.get('/instructors/:id', instructors.show)
 // para editar
 routes.get('/instructors/:id/edit', instructors.edit)
 
+routes.put('/instructors', instructors.put)
+
 
 routes.post('/instructors', instructors.post) // recebendo a function do arquivo instructors.js
 
@@ -28,3 +30,9 @@ routes.get('/members', function (req, res) {
 })
 
 module.exports = routes
+
+
+// get: Receber RESOURCE
+// Post: Criar um novo RESOURCER com dados enviados
+// put: Atualizar RESOURCE
+// delete: Deletar RESOURCE

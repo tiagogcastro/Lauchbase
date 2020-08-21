@@ -103,6 +103,38 @@ exports.edit = function (req, res) {
     return res.render('instructors/edit', {instructor })
 }
 
+// put
+// Vai atualizar os dados no editar
+exports.put = function (req, res) {
+     const { id } = req.body
 
+     // Vai procurar se tem o id 
+     const foundInstructor = data.instructors.find( (instructor) => {
+         return id == instructor.id
+     })
+ 
+     // se nao tiver vai ter msg de erro
+     if (!foundInstructor) {
+         return res.send('Instructors not found!')
+     }
+
+     // pega os dados que modificaram
+     const instructor = {
+        ...foundInstructor,
+        ...req.body,
+        birth: Date.parse(req.body.birth)
+     }
+
+     data.instructors[id - 1] = instructor
+
+     // Joga no mesmo id no data.json
+     fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
+         if (err) {
+             return res.send('Write error!')
+         }
+
+         return res.redirect(`/instructors/${id}`)
+     })
+}
 
 // delete
