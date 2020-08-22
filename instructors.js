@@ -138,3 +138,22 @@ exports.put = function (req, res) {
 }
 
 // delete
+exports.delete = function(req, res) {
+    const { id } = req.body
+
+    // Filtra, para cada instrutor vai retornar algo boolean
+    const filteredInstructors = data.instructors.filter(function(instructor) {
+        // diferente 
+        return instructor.id != id
+    })
+
+    data.instructors = filteredInstructors
+
+    fs.writeFile('data.json', JSON.stringify(data, null, 2), function (err) {
+        if (err) {
+            return res.send('write file error!')
+        }
+
+        return res.redirect('/instructors')
+    })
+}

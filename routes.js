@@ -6,6 +6,8 @@ routes.get('/', function (req, res) {
     return res.redirect('/instructors')
 })
 
+
+
 routes.get('/instructors', function (req, res) {
     return res.render('instructors/index')
 })
@@ -17,11 +19,14 @@ routes.get('/instructors/create', function(req, res) {
 // ve o id
 routes.get('/instructors/:id', instructors.show)
 
-// para editar
+// para ir na page de editar
 routes.get('/instructors/:id/edit', instructors.edit)
 
+// para editar
 routes.put('/instructors', instructors.put)
 
+// para deletar
+routes.delete('/instructors', instructors.delete)
 
 routes.post('/instructors', instructors.post) // recebendo a function do arquivo instructors.js
 
