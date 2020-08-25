@@ -56,23 +56,24 @@ exports.post = function(req, res) {
     
       // tratamento dos dados
       // destruturando os dados
-        let {avatar_url, birth, name, services, gender} = req.body
-       
+
         // Cria a data
         // posso tirar os req.body por ter a variavel com os dados
-        birth = Date.parse(birth) // vai ser alterado
-        const created_at = Date.now() // req.body.birth cria uma data
-        const id = Number(data.members.length + 1)
-    
-        // [] vazio
+        birth = Date.parse(req.body.birth) // vai ser alterado
+        const created_at = Date.now()
+
+        let id = 1
+        const lastMember = data.members[data.members.length - 1]
+
+        if (lastMember) {
+            id = lastMember.id + 1
+        }
+ 
         data.members.push({
             id,
-            avatar_url,
-            name,
+            ...req.body,
             birth,
-            gender,
-            services,
-            created_at,
+            created_at
         }) // [{retorna array com obj}]
     
         // Vai criar um arquivo json e salvar os dados quando cadastrado
