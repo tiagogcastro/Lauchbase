@@ -1,12 +1,12 @@
 const fs = require('fs')
 
-const data = require('./data.json')
+const data = require('../data.json')
 
 // Desestruturando
-const { age, date } = require('./utils.js')
+const { age, date } = require('../utils')
 
 exports.index = function (req, res) {
-    return res.render('instructors/index', {instructors: data.instructors})
+    return res.render('members/index', {members: data.members})
 }
 
 // show - apresentar os dados na tela
@@ -15,30 +15,33 @@ exports.show = function(req, res) {
     const { id } = req.params
 
     // Vai procurar se tem o id 
-    const foundInstructor = data.instructors.find( (instructor) => {
-        return id == instructor.id
+    const foundMember = data.members.find( (member) => {
+        return id == member.id
     })
 
     // se nao tiver vai ter msg de erro
-    if (!foundInstructor) {
-        return res.send('Instructors not found!')
+    if (!foundMember) {
+        return res.send('members not found!')
     }
 
     // age
 
     // Alterando os dados
-    const instructor = {
-        ...foundInstructor,
-        age: age(foundInstructor.birth),
-        services: foundInstructor.services.split(','),
-        created_at: Intl.DateTimeFormat('pt-BR').format(foundInstructor.created_at)
+    const member = {
+        ...foundMember,
+        age: age(foundMember.birth),
+        // created_at: Intl.DateTimeFormat('pt-BR').format(foundMember.created_at)
     }
 
     // se tiver vai retornar
-    return res.render('instructors/show', { instructor: instructor})
+    return res.render('members/show', { member: member})
 }    
 
-// Recebendo na pagina instructors os dados do create.
+exports.create =  function(req, res) {
+    return res.render('members/create')
+}
+
+// Recebendo na pagina members os dados do create.
 exports.post = function(req, res) {
 
     // validação
@@ -59,10 +62,10 @@ exports.post = function(req, res) {
         // posso tirar os req.body por ter a variavel com os dados
         birth = Date.parse(birth) // vai ser alterado
         const created_at = Date.now() // req.body.birth cria uma data
-        const id = Number(data.instructors.length + 1)
+        const id = Number(data.members.length + 1)
     
         // [] vazio
-        data.instructors.push({
+        data.members.push({
             id,
             avatar_url,
             name,
@@ -78,33 +81,32 @@ exports.post = function(req, res) {
                 return res.send('write file error!')
             } 
             
-            return res.redirect(`/instructors/${id}`)
+            return res.redirect(`/members/${id}`)
         })
 }
 
-// edit
 exports.edit = function (req, res) {
      // req.params
      const { id } = req.params
 
      // Vai procurar se tem o id 
-     const foundInstructor = data.instructors.find( (instructor) => {
-         return id == instructor.id
+     const foundMember = data.members.find( (member) => {
+         return id == member.id
      })
  
      // se nao tiver vai ter msg de erro
-     if (!foundInstructor) {
-         return res.send('Instructors not found!')
+     if (!foundMember) {
+         return res.send('members not found!')
      }
 
      // organizando os dados em um obj
-     const instructor = {
-         ...foundInstructor,
-         birth: date(foundInstructor.birth) 
+     const member = {
+         ...foundMember,
+         birth: date(foundMember.birth) 
          
      }
 
-    return res.render('instructors/edit', {instructor })
+    return res.render('members/edit', {member })
 }
 
 // Put Vai atualizar os dados no editar
@@ -113,8 +115,8 @@ exports.put = function (req, res) {
 
     let index = 0
      // Vai procurar se tem o id 
-     const foundInstructor = data.instructors.find( (instructor, foundIndex) => {
-         if ( id == instructor.id ) {
+     const foundMember = data.members.find( (member, foundIndex) => {
+         if ( id == member.id ) {
              // Atualiza o index
              index = foundIndex
              // se achar retorna true
@@ -123,20 +125,20 @@ exports.put = function (req, res) {
      })
  
      // se nao tiver vai ter msg de erro
-     if (!foundInstructor) {
-         return res.send('Instructors not found!')
+     if (!foundMember) {
+         return res.send('members not found!')
      }
 
      // pega os dados que modificaram
-     const instructor = {
-        ...foundInstructor,
+     const member = {
+        ...foundMember,
         ...req.body,
         birth: Date.parse(req.body.birth),
         id: Number(req.body.id) 
      }
 
      // Após achar o id == da edit vai atualizar no local certo
-     data.instructors[index] = instructor
+     data.members[index] = member
 
      // Joga no mesmo id no data.json
      fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
@@ -144,28 +146,27 @@ exports.put = function (req, res) {
              return res.send('Write error!')
          }
 
-         return res.redirect(`/instructors/${id}`)
+         return res.redirect(`/members/${id}`)
      })
 }
 
-// delete
 exports.delete = function(req, res) {
     const { id } = req.body
 
     // Filtra, para cada instrutor vai retornar algo boolean
-    const filteredInstructors = data.instructors.filter(function(instructor) {
+    const filteredmembers = data.members.filter(function(member) {
         // diferente 
-        return instructor.id != id
+        return member.id != id
     })
 
-    data.instructors = filteredInstructors
+    data.members = filteredmembers
 
     fs.writeFile('data.json', JSON.stringify(data, null, 2), function (err) {
         if (err) {
             return res.send('write file error!')
         }
 
-        return res.redirect('/instructors')
+        return res.redirect('/members')
     })
 }
 
