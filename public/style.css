@@ -101,8 +101,9 @@ header {
 }
 
 .details .item:last-child {
-    border: none;
+    border-bottom: none;
 }
+
 .details h3,
 .details .item div:nth-child(1) {
     line-height: 24px;
@@ -250,6 +251,12 @@ a.button {
     color: white;
     font: 12px;
     border-radius: 4px;
+    transition: 0.4s;
+}
+
+.table-container tbody tr td:last-child a:hover,
+.table-container > a:hover {
+    filter: brightness(80%);
 }
 
 .table-container > a {
