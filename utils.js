@@ -6,13 +6,13 @@ module.exports = {
         const birthDate = new Date(timestamp)
 
         // Calculo da idade
-        // Retorna o ano
+        // Retorna o ano atual - ano nasc.
         let age = today.getFullYear() - birthDate.getFullYear()
 
-        // Retorna o mes
+        // Retorna o mes atual - mes nasc
         const month = today.getMonth() - birthDate.getMonth()
 
-        // day 1 - 31
+        // Retorna o dia
         birthDate.getDate()
 
         //
@@ -25,7 +25,7 @@ module.exports = {
     date: function (timestamp) {
         const date = new Date(timestamp)
 
-        const year = date.getUTCFullYear()
+        const year = `000${date.getUTCFullYear()}`.slice(-4)
         const month =`0${date.getUTCMonth() + 1}`.slice(-2)
         const day = `0${date.getUTCDate()}`.slice(-2)
 

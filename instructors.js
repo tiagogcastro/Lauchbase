@@ -5,7 +5,11 @@ const data = require('./data.json')
 // Desestruturando
 const { age, date } = require('./utils.js')
 
-// show
+exports.index = function (req, res) {
+    return res.render('instructors/index', {instructors: data.instructors})
+}
+
+// show - apresentar os dados na tela
 exports.show = function(req, res) {
     // req.params
     const { id } = req.params
@@ -32,7 +36,7 @@ exports.show = function(req, res) {
 
     // se tiver vai retornar
     return res.render('instructors/show', { instructor: instructor})
-}   
+}    
 
 // Recebendo na pagina instructors os dados do create.
 exports.post = function(req, res) {
@@ -74,7 +78,7 @@ exports.post = function(req, res) {
                 return res.send('write file error!')
             } 
             
-            return res.redirect('/instructors')
+            return res.redirect(`/instructors/${id}`)
         })
 }
 
@@ -103,14 +107,19 @@ exports.edit = function (req, res) {
     return res.render('instructors/edit', {instructor })
 }
 
-// put
-// Vai atualizar os dados no editar
+// Put Vai atualizar os dados no editar
 exports.put = function (req, res) {
      const { id } = req.body
 
+    let index = 0
      // Vai procurar se tem o id 
-     const foundInstructor = data.instructors.find( (instructor) => {
-         return id == instructor.id
+     const foundInstructor = data.instructors.find( (instructor, foundIndex) => {
+         if ( id == instructor.id ) {
+             // Atualiza o index
+             index = foundIndex
+             // se achar retorna true
+             return true
+         }
      })
  
      // se nao tiver vai ter msg de erro
@@ -122,10 +131,12 @@ exports.put = function (req, res) {
      const instructor = {
         ...foundInstructor,
         ...req.body,
-        birth: Date.parse(req.body.birth)
+        birth: Date.parse(req.body.birth),
+        id: Number(req.body.id) 
      }
 
-     data.instructors[id - 1] = instructor
+     // Após achar o id == da edit vai atualizar no local certo
+     data.instructors[index] = instructor
 
      // Joga no mesmo id no data.json
      fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
@@ -157,3 +168,5 @@ exports.delete = function(req, res) {
         return res.redirect('/instructors')
     })
 }
+
+
