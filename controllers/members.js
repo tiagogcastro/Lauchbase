@@ -9,34 +9,6 @@ exports.index = function (req, res) {
     return res.render('members/index', {members: data.members})
 }
 
-// show - apresentar os dados na tela
-exports.show = function(req, res) {
-    // req.params
-    const { id } = req.params
-
-    // Vai procurar se tem o id 
-    const foundMember = data.members.find( (member) => {
-        return id == member.id
-    })
-
-    // se nao tiver vai ter msg de erro
-    if (!foundMember) {
-        return res.send('members not found!')
-    }
-
-    // age
-
-    // Alterando os dados
-    const member = {
-        ...foundMember,
-        age: age(foundMember.birth),
-        // created_at: Intl.DateTimeFormat('pt-BR').format(foundMember.created_at)
-    }
-
-    // se tiver vai retornar
-    return res.render('members/show', { member: member})
-}    
-
 exports.create =  function(req, res) {
     return res.render('members/create')
 }
@@ -85,6 +57,34 @@ exports.post = function(req, res) {
             return res.redirect(`/members/${id}`)
         })
 }
+
+// show - apresentar os dados na tela
+exports.show = function(req, res) {
+    // req.params
+    const { id } = req.params
+
+    // Vai procurar se tem o id 
+    const foundMember = data.members.find( (member) => {
+        return id == member.id
+    })
+
+    // se nao tiver vai ter msg de erro
+    if (!foundMember) {
+        return res.send('members not found!')
+    }
+
+    // age
+
+    // Alterando os dados
+    const member = {
+        ...foundMember,
+        age: age(foundMember.birth),
+        // created_at: Intl.DateTimeFormat('pt-BR').format(foundMember.created_at)
+    }
+
+    // se tiver vai retornar
+    return res.render('members/show', { member: member})
+}    
 
 exports.edit = function (req, res) {
      // req.params
