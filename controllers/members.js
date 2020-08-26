@@ -79,7 +79,7 @@ exports.show = function(req, res) {
     const member = {
         ...foundMember,
         age: age(foundMember.birth),
-        // created_at: Intl.DateTimeFormat('pt-BR').format(foundMember.created_at)
+        created_at: Intl.DateTimeFormat('pt-BR').format(foundMember.created_at)
     }
 
     // se tiver vai retornar

@@ -269,14 +269,17 @@ td:last-child {
     text-align: center;
 }
 
-/* .table-container .services-style {
+.table-container .services-style span {
     padding: 8px 16px;
-    background-color: var(--color-amareloM);
     border-radius: 16px;
-    color: #777;
     margin-right: 4px;
-    display: inline-block;
-    font-weight: bold;
+    text-align: center;
+    background-color: var(--color-amareloM);
+    color: #777;
     text-transform: uppercase;
     font-size: 12px;
-} */
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: inline-block;
+    
+}

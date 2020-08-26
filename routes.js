@@ -25,18 +25,14 @@ routes.delete('/instructors', instructors.delete)
 routes.post('/instructors', instructors.post) // recebendo a function do arquivo instructors.js
 
 
-// Members
 routes.get('/members', members.index)
 
 routes.get('/members/create', members.create)
 
-// ve o id
 routes.get('/members/:id', members.show)
 
-// para ir na page de editar
 routes.get('/members/:id/edit', members.edit)
 
-// para editar
 routes.put('/members', members.put)
 
 routes.delete('/members', members.delete)

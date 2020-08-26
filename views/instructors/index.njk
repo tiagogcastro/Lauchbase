@@ -18,8 +18,17 @@
                     <tr>
                         <td>
                             <span style="background-image: url({{instructor.avatar_url}}"></span>
-                            {{instructor.name}}</td>
-                        <td> {{instructor.services}}</td>
+                            {{instructor.name}}
+                        </td>
+
+                        <td class="services-style">
+                            <div>
+                            {% for service in instructor.services%}
+                                <span> {{service}}</span>
+                            {% endfor %}
+                            </div>
+                        </td>
+
                         <td>
                             <a target="__blank" href="/instructors/{{instructor.id}}">Ver</a>
                         </td>
