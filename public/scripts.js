@@ -6,3 +6,18 @@ for (item of menuItems) {
         item.classList.add('active')
     }
 }
+
+
+const formDelete = document.querySelector('#form-delete')
+formDelete.addEventListener('submit', function(event) {
+    const confirmation = confirm('Deseja Deletar?')
+    if(!confirmation) {
+        event.preventDefault()
+    } else {
+        if (currentPage == 'members') {
+            return res.redirect('/members')
+        } else {
+            return res.redirect('/instructors')
+        }
+    }
+})
