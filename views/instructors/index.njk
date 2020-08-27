@@ -30,11 +30,19 @@
                         </td>
 
                         <td>
-                            <a target="__blank" href="/instructors/{{instructor.id}}">Ver</a>
+                            <a href="/instructors/{{instructor.id}}">Ver</a>
                         </td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
+
+<script>
+    const tbodyTds = document.querySelectorAll('tbody tr td:first-child');
+
+    tbodyTds.forEach(td => {
+        td.style.height = `${td.parentElement.offsetHeight}px`;
+    })
+</script>
 {% endblock content %}

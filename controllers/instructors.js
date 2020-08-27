@@ -178,5 +178,3 @@ exports.delete = function(req, res) {
         return res.redirect('/instructors')
     })
 }
-
-
