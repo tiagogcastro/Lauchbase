@@ -22,7 +22,7 @@ routes.put('/instructors', instructors.put)
 
 routes.delete('/instructors', instructors.delete)
 
-routes.post('/instructors', instructors.post) // recebendo a function do arquivo instructors.js
+routes.post('/instructors', instructors.post) 
 
 
 routes.get('/members', members.index)

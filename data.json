@@ -1,4 +1,39 @@
 {
-  "members": [],
-  "instructors": []
+  "members": [
+    {
+      "id": 1,
+      "avatar_url": "https://media-exp1.licdn.com/dms/image/C4D03AQGUgkAbku-Wkg/profile-displayphoto-shrink_200_200/0?e=1603929600&v=beta&t=0XBlJ7UU5xONvZap5e6JijnbZpY1e8VMi-QGSSIOFDQ",
+      "name": "Tiago Gonçalves",
+      "email": "tiaguin180@gmail.com",
+      "birth": 1083110400000,
+      "gender": "M",
+      "blood": "A+",
+      "weight": "60",
+      "height": "170",
+      "created_at": 1598564352849
+    },
+    {
+      "id": 2,
+      "avatar_url": "https://media-exp1.licdn.com/dms/image/C4D03AQGUgkAbku-Wkg/profile-displayphoto-shrink_200_200/0?e=1603929600&v=beta&t=0XBlJ7UU5xONvZap5e6JijnbZpY1e8VMi-QGSSIOFDQ",
+      "name": "Tiago Gonçalves",
+      "email": "tiaguin180@gmail.com",
+      "birth": 1083110400000,
+      "gender": "M",
+      "blood": "AB+",
+      "weight": "105",
+      "height": "190",
+      "created_at": 1598565870201
+    }
+  ],
+  "instructors": [
+    {
+      "id": 1,
+      "avatar_url": "https://media-exp1.licdn.com/dms/image/C4D03AQGUgkAbku-Wkg/profile-displayphoto-shrink_200_200/0?e=1603929600&v=beta&t=0XBlJ7UU5xONvZap5e6JijnbZpY1e8VMi-QGSSIOFDQ",
+      "name": "Tiago Gonçalves",
+      "birth": 1083110400000,
+      "gender": "M",
+      "services": "crossfit, musculaçao",
+      "created_at": 1598564261738
+    }
+  ]
 }
