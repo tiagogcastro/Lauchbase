@@ -10,6 +10,11 @@
 
     /* Animation */
     animation-name: up 200ms ease;
+    border-radius: 1rem;
+}
+
+.avatar {
+    /* height: 50%; */
 }
 
 @keyframes up {
@@ -24,7 +29,7 @@
 }
 
 /* Details */
-.details {
+.details { 
     padding: 32px;
 }
 

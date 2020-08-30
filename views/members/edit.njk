@@ -4,7 +4,11 @@
 
 <div class="card">
     <section class="avatar" 
+<<<<<<< HEAD:views/instructors/edit.njk
+    style="background: url({{instructor.avatar_url}}) no-repeat center center / cover">
+=======
     style="background: url({{member.avatar_url}}) no-repeat center center / cover">
+>>>>>>> 7cb0a33b91c9ed244ab6dc809b56516ee2a4bdb3:src/app/views/members/edit.njk
     </section>
 
     <section class="details">
@@ -25,22 +29,7 @@
             value={{member.id}}>
             <button type="submit">Deletar</button>
         </form> 
-
-        <script>
-            const formDelete = document.querySelector('#form-delete')
-            formDelete.addEventListener('submit', function(event) {
-                const confirmation = confirm('Deseja Deletar?')
-                if(!confirmation) {
-                    event.preventDefault()
-                } else {
-                    return res.redirect('/members')
-                }
-            })
-
-        </script>
     </section>
 </div>
-
-
 
 {% endblock content %}
