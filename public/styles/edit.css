@@ -1,0 +1,47 @@
+
+input[type="radio"] {
+    width: initial;
+    margin-right: 4px;
+}
+
+.label-class:hover{
+    cursor: pointer;
+}
+
+input::placeholder {
+    font-size: 16px;
+    font-weight: normal;
+}
+
+button[type="submit"],
+a.button {
+    padding: 8px 32px;
+    background: var(--color-rocket);
+    color: white;
+    border-radius: 4px;
+    margin-top: 32px;
+    width: 100%;
+    font-size: 16px;
+}
+
+button[type="submit"]:hover,
+a.button:hover {
+    filter: brightness(90%);
+    cursor: pointer;
+    transition: background 0.6s;
+}
+
+a.button {
+    display: block;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+#form-delete button[type="submit"] {
+    margin-top: 8px;
+    background-color: lightcoral;
+}
+
+#form-delete button[type="submit"]:hover {
+    background-color: red;
+}
