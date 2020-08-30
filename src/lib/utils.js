@@ -1,7 +1,6 @@
 module.exports = { 
-    age: 
     // Transformando os números para fazer a idade
-    function (timestamp) {
+    age(timestamp) {
         const today = new Date()
         const birthDate = new Date(timestamp)
 
@@ -22,7 +21,7 @@ module.exports = {
 
         return age
     },
-    date: function (timestamp) {
+    date(timestamp) {
         const date = new Date(timestamp)
 
         const year = `000${date.getUTCFullYear()}`.slice(-4)
