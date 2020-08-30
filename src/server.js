@@ -13,7 +13,7 @@ server.use(routes)
 // config o njk
 server.set('view engine', 'njk')
 
-nunjucks.configure('views', {
+nunjucks.configure('src/app/views', {
     express: server,
     autoescape: false, // Permite colocar tags html dentro das variaveis
     noCache: true

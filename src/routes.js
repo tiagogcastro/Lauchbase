@@ -1,7 +1,7 @@
 const express = require('express')
 const routes = express.Router() // criando a rota dos metodos get
-const instructors = require("./controllers/instructors")
-const members = require('./controllers/members')
+const instructors = require("./app/controllers/instructors")
+const members = require('./app/controllers/members')
 
 routes.get('/', function (req, res) {
     return res.redirect('/instructors')
@@ -22,7 +22,7 @@ routes.put('/instructors', instructors.put)
 
 routes.delete('/instructors', instructors.delete)
 
-routes.post('/instructors', instructors.post) // recebendo a function do arquivo instructors.js
+routes.post('/instructors', instructors.post) 
 
 
 routes.get('/members', members.index)
