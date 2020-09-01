@@ -10,7 +10,7 @@
 
         </section>
         <section class="details">
-            <h3>Detalhes</h3>
+            <h3>Detalhes / Id: {{instructor.id}}</h3>
             <div class="item">
                 <div>Instrutor</div>
                 <div>{{ instructor.name}}</div>
@@ -37,7 +37,7 @@
             
             <div class="item">
                 <div>Desde</div>
-                <div>{{instructor.created_at}}</div>
+                <div>{{instructor.created_at}} </div>
             </div>
 
             <a href="/instructors/{{instructor.id}}/edit" class="button">Editar</a>
