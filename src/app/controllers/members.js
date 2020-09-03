@@ -5,18 +5,18 @@ const Member = require('../models/Member')
 
 module.exports = {
     index(req, res) {
-
         Member.all(function (members) {
             return res.render('members/index', {members})
         })
     },
 
     create(req, res) {
-        return res.render('members/create')
+        Member.instructorsSelectOptions(function(options) {
+            return res.render('members/create', {instructorOptions: options})
+        })
     },
 
     post(req, res) {
-
         // validação
         const keys = Object.keys(req.body) 
         
@@ -53,7 +53,9 @@ module.exports = {
  
             member.birth = date(member.birth).iso
  
-            return res.render('members/edit', { member })
+            Member.instructorsSelectOptions(function(options) {
+                return res.render('members/edit', {member, instructorOptions: options})
+            })
         })
     },
     

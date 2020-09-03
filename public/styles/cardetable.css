@@ -162,3 +162,20 @@ td:last-child {
     margin-bottom: 8px;
     display: inline-block;    
 }
+
+.card .details .alumni-edit div:last-child{
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    align-items: center;
+    justify-content: center;
+}
+
+.card .details .alumni-edit span {
+    width: 48px;
+    height: 48px;
+    background-position: center;
+    background-size: cover;
+    border-radius: 50%;
+    box-shadow: 3px 1px 6px -4px black;
+    border: 2px solid white;
+}

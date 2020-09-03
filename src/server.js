@@ -19,7 +19,10 @@ nunjucks.configure('src/app/views', {
     noCache: true
 })
 
+const DATABASE = process.env.DATABASE;
 server.listen(5000, function () {
+    console.log((`Tabela funcionando: ${DATABASE}`))
+
     console.log('Servidor iniciou ou atualizou!')
 })
 
