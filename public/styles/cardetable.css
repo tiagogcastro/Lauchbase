@@ -13,10 +13,6 @@
     border-radius: 1rem;
 }
 
-.avatar {
-    /* height: 50%; */
-}
-
 @keyframes up {
     from { /*0%*/
         opacity: 0;
@@ -163,6 +159,7 @@ td:last-child {
     display: inline-block;    
 }
 
+/* Page show */
 .card .details .alumni-edit div:last-child{
     display: grid;
     grid-template-columns: 96px 1fr;
@@ -178,4 +175,38 @@ td:last-child {
     border-radius: 50%;
     box-shadow: 3px 1px 6px -4px black;
     border: 2px solid white;
+}
+
+.table-container .header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.table-container .header a {
+    margin: 0;
+    width: 120px;
+}
+
+.table-container .header form {
+    display: grid;
+    grid-template-columns: 1fr 120px;
+    align-items: center;
+    gap: 8px;
+}
+
+.table-container .header form input {
+    border: 1px solid #eee;
+    padding: 4px 8px;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+.table-container .header form input:focus {
+    border: 1px solid var(--color-rocket);
+}
+
+.table-container .header form button {
+    margin: 0;
 }
