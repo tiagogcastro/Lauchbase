@@ -7,37 +7,53 @@ for (item of menuItems) {
     }
 }
 
-let totalPages = 20,
-    selectedPage = 6, 
-    pages = [],
+// Paginate
+function paginate(selectedPage, totalPages) {
+
+    let pages = [],
     oldPage
 
-for(let currentPage = 1; currentPage <= totalPages; currentPage++) {
-    
-    const firstAndLastPage = currentPage == 1 || currentPage == totalPages
-    const pagesAfterSelectedPage = currentPage <= selectedPage + 2
-    const pagesBeforeSelectedPage = currentPage >= selectedPage - 2
+    for(let currentPage = 1; currentPage <= totalPages; currentPage++) {
 
-    if(firstAndLastPage || pagesBeforeSelectedPage && pagesAfterSelectedPage) {
+        const firstAndLastPage = currentPage == 1 || currentPage == totalPages
+        const pagesAfterSelectedPage = currentPage <= selectedPage + 2
+        const pagesBeforeSelectedPage = currentPage >= selectedPage - 2
 
-        if(oldPage && currentPage - oldPage > 2) {
-            pages.push('...')
+        if(firstAndLastPage || pagesBeforeSelectedPage && pagesAfterSelectedPage) {
+
+            if(oldPage && currentPage - oldPage > 2) {
+                pages.push('...')
+            }
+
+            if(oldPage && currentPage - oldPage == 2) {
+                pages.push(oldPage + 1)
+            }
+
+            pages.push(currentPage)
+
+            // page q o user esta
+            oldPage = currentPage
         }
+    }
+    return pages
+}
 
-        if(oldPage && currentPage - oldPage == 2) {
-            pages.push(oldPage + 1)
-        }
+const pagination = document.querySelector('.pagination')
+const page = +pagination.dataset.page
+const total = +pagination.dataset.total
+const pages = paginate(page, total)
 
-        pages.push(currentPage)
+let elements = ''
 
-        // page q o user esta
-        oldPage = currentPage
+for(let page of pages) {
+    if(String(page).includes('...')) {
+        elements += `<span>${page}</span>`
+    } else {
+        elements += `<a href="?page=${page}">${page}</a>`
     }
 }
 
-console.log(pages)
-
-
+pagination.innerHTML = elements
 
 
 const formDelete = document.querySelector('#form-delete')
@@ -49,9 +65,4 @@ formDelete.addEventListener('submit', function(event) {
         return res.redirect('/')
     }
 })
-
-// Paginate
-
-// totalPages = 20
-// selectedPage = 15
 
