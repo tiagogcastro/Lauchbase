@@ -162,13 +162,13 @@ td:last-child {
 /* Page show */
 .card .details .alumni-edit div:last-child{
     display: grid;
-    grid-template-columns: 96px 1fr;
+    grid-template-columns: 80px 1fr;
     align-items: center;
     justify-content: center;
 }
 
 .card .details .alumni-edit span {
-    width: 48px;
+    width: 32px;
     height: 48px;
     background-position: center;
     background-size: cover;
@@ -230,9 +230,13 @@ td:last-child {
 }
 
 .pagination a,
-.pagination span {
+.pagination span{
     color: var(--color-rocket);
     margin-right: 16px;
+}
+
+.pagination a:last-child, span:last-child {
+    margin-right: 0;
 }
 
 .pagination a:hover {
@@ -242,4 +246,8 @@ td:last-child {
 
 .pagination .active {
     border-bottom: 1px solid var(--color-rocket);
+}
+
+.active2 {
+    color: red;
 }

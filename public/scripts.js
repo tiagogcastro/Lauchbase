@@ -47,7 +47,7 @@ function createPagination(pagination) {
     const pages = paginate(page, total)
     
     let elements = ''
-    
+
     for(let page of pages) {
         if(String(page).includes('...')) {
             elements += `<span>${page}</span>`
@@ -58,7 +58,7 @@ function createPagination(pagination) {
                 elements += `<a href="?page=${page}">${page}</a>`
             }
         }
-    }  
+    }
     pagination.innerHTML = elements 
 }
 
@@ -66,13 +66,20 @@ if (pagination) {
     createPagination(pagination)
 }
 
-const formDelete = document.querySelector('#form-delete')
-formDelete.addEventListener('submit', function(event) {
-    const confirmation = confirm('Deseja Deletar?')
-    if(!confirmation) {
-        event.preventDefault()
-    } else {
-        return res.redirect('/')
-    }
-})
+const confirmDelete = location.pathname.includes('edit')
+if (confirmDelete) {
+    deleteOrNo()    
+}
 
+function deleteOrNo() {
+    console.log('text')
+    const formDelete = document.querySelector('#form-delete')
+    formDelete.addEventListener('submit', function(event) {
+        const confirmation = confirm('Deseja Deletar?')
+        if(!confirmation) {
+            event.preventDefault()
+        } else {
+            return res.redirect('/')
+        }
+    })
+}

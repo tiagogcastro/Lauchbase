@@ -6,7 +6,7 @@ module.exports = {
         let { filter, page, limit } = req.query
 
         page = page || 1
-        limit = limit || 2
+        limit = limit || 3
         let offset = limit * (page - 1)
 
         const params = {
@@ -15,12 +15,11 @@ module.exports = {
                     total: Math.ceil(instructors[0].total / limit),
                     page
                 }
-
-                return res.render('instructors/index', {instructors, pagination, filter})
+                instructor = instructors.map(item => item.services = item.services.split(','))
+                return res.render('instructors/index', {instructors, pagination, filter, instructor})
             }
         }
         Instructor.paginate(params)
-
     },
 
     create(req, res) {
@@ -52,7 +51,6 @@ module.exports = {
 
            instructor.age = age(instructor.birth)
            instructor.services = instructor.services.split(',')
-
            instructor.created_at = date(instructor.created_at).format
 
            return res.render('instructors/show', { instructor })

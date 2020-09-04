@@ -3,7 +3,7 @@
 {% block content %}
 
         {% block head %}
-            <title>Gym Manager </title>
+            <title>Gym Manager - {{member.name}} </title>
         {% endblock %}
 
     <div class="card">
@@ -12,7 +12,7 @@
 
         </section>
         <section class="details">
-            <h3>Detalhes</h3>
+            <h3>Detalhes / ID: {{member.id}}</h3>
             <div class="item">
                 <div>Membro</div>
                 <div>{{ member.name}}</div>
