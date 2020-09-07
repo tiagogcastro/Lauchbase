@@ -20,7 +20,8 @@
         <input type="text"
         name="name"
         placeholder="Título do Anúncio"
-        value="{{ product.name }}">
+        value="{{ product.name }}"
+        >
     </div>
 </div>
 
@@ -40,6 +41,7 @@
         name="price"
         placeholder="Preço do Produto"
         value="{{ product.price }}"
+        onkeydown="Mask.apply(this, 'formatBRL')"
         >
         {# Faremos uma máscara de dinheiro/reais #}
     </div>
