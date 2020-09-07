@@ -28,9 +28,7 @@
 <div class="item">
     <div>Descrição</div>
     <div>
-        <textarea name="description">
-            {{product.description}}
-        </textarea>
+        <textarea name="description">{{product.description}}</textarea>
     </div>
 </div>
 
@@ -66,8 +64,8 @@
 <div class="item">
     <div>Disponível</div>
     <div>
-        <span>
-            <label for="yes" class="label-class">
+        <label for="yes" class="label-class">
+            <span>
                 <input type="radio" 
                 checked
                 name="status" 
@@ -77,10 +75,10 @@
                 {% endif %}
                 id="yes">
                 Sim
-            </label>
-        </span>
-        <span>
-            <label for="no" class="label-class">
+            </span>
+        </label>
+        <label for="no" class="label-class">
+            <span>
                 <input type="radio" 
                 name="status" 
                 value="0"
@@ -89,8 +87,8 @@
                 {% endif %}
                 id="no">
                 Não
-            </label>
-        </span>
+            </span>
+        </label>
     </div>
 </div>
 {% endif %}
