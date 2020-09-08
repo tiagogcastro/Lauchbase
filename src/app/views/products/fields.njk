@@ -33,6 +33,25 @@
 </div>
 
 <div class="item">
+    <div>Fotos</div>
+    <div>
+        <div id="photos-upload">
+            <input
+        id="photos-input"
+        type="file" 
+        name="photos" 
+        multiple
+        accept="image/*">
+
+        <p>Selecione até 6 Fotos</p>
+        </div>
+        <div id="photos-preview">
+
+        </div>
+    </div>
+</div>
+
+<div class="item">
     <div>Valor</div>
     <div>
         <input type="text"
@@ -41,7 +60,6 @@
         value="{{ product.price }}"
         onkeydown="Mask.apply(this, 'formatBRL')"
         >
-        {# Faremos uma máscara de dinheiro/reais #}
     </div>
     {% if product.old_price%}
         <input type="hidden" name="old_price" value={{product.old_price}}>
