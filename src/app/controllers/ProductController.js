@@ -4,7 +4,7 @@ const Category = require('../models/Category')
 const Product = require('../models/Product')
 
 module.exports = {
-    async create(req, res) {
+    create(req, res) {
         // Pegar categorias
         Category.all()
         .then(function(results) {
