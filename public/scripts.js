@@ -18,8 +18,8 @@ const Mask = {
 const PhotosUpload = {
     input: "",
     preview: document.querySelector('#photos-preview'),
-    files: [],
     uploadLimit: 6,
+    files: [],
     handleFileInput(event) {
         const { files: fileList } = event.target
         PhotosUpload.input = event.target
