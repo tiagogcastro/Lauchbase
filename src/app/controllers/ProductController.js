@@ -31,7 +31,7 @@ module.exports = {
             return res.send('Please, send at least one image')
         }
 
-        // Pegando os produtos e todas as categorias
+        // Get categories
         let results = await Product.create(req.body)
         const productId = results.rows[0].id
 
@@ -56,10 +56,20 @@ module.exports = {
         product.price = formatPrice(product.price)
         product.old_price = formatPrice(product.old_price)
 
+        // Get categories
         results = await Category.all()
         const categories = results.rows
 
-        return res.render('products/edit.njk', { product, categories})
+        // Get images
+        results = await Product.files(product.id)
+        let files = results.rows
+        files = files.map(file => ({
+            ...file,
+            src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
+        }))
+
+
+        return res.render('products/edit.njk', { product, categories, files})
     },
 
     async put(req, res) {
