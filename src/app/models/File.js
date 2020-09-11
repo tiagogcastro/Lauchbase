@@ -28,12 +28,14 @@ module.exports = {
             const file = result.rows[0]
     
             // Caminho que ele quer q delete
-            fs.unlinkSync(file.path)
-
+            fs.unlinkSync(file.path, (err) => {
+                if(err) throw err       
+            })
+            
             return db.query(`
             DELETE FROM files WHERE id = $1
         `, [id])
-        
+    
         }catch(err) {
             console.error(err)
         }
