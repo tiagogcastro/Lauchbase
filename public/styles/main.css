@@ -386,11 +386,15 @@ form .item #photos-preview img {
     transition: 200ms;
 }
 
+.product-single .gallery-preview img.active {
+    transform: scale(0.93);  
+    border: 1px solid #333;
+}
+
 .product-single .gallery-preview img:hover,
 .product-single .gallery-preview img.active {
     opacity: 1;
 }
-
 
 /* Product single Info */
 .product-single .info {
