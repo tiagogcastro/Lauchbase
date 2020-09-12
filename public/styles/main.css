@@ -22,12 +22,19 @@ html,body {
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #cccccc;
+
+    display: flex;
+    flex-direction: column;
 }
 
 .container {
     max-width: 940px;
     width: 90%;
     margin: 0 auto;
+}
+
+footer {
+    margin-top: auto;
 }
 
 .button {
