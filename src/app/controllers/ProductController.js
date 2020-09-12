@@ -44,6 +44,10 @@ module.exports = {
 
     },
 
+    show(req, res) {
+        return res.render("products/show")
+    },
+
     async edit(req, res) {
         // Pegando os produtos e todas as categorias
         let results = await Product.find(req.params.id)
