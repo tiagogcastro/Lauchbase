@@ -4,7 +4,6 @@ const Product = require('../models/Product')
 
 module.exports = {
     async index(req, res) {
-
         try {
             let results = await Product.all()
             const products = results.rows
@@ -33,7 +32,7 @@ module.exports = {
 
             const lastAdded = await Promise.all(productsPromise)
 
-            return res.render("home/index", {products: lastAdded})
+            return res.render("search/index", {products: lastAdded})
         }
         catch(err) {
             console.error(err)
