@@ -42,8 +42,23 @@ module.exports = {
                 total: products.length
             }
 
+            const categories = products.map(product => ({
+                id: product.category_id,
+                name: product.category_name
+                // Se tiver category diferente, retorna
+            })).reduce((categoriesFiltered, category) => {
 
-            return res.render("search/index", {products})
+                // Se tiver uma category igual, não poem repetido
+                const found = categoriesFiltered.some(cat => cat.id == category.id)
+
+                if (!found) {
+                    categoriesFiltered.push(category)
+                }
+                
+                return categoriesFiltered // [{id, name}]
+            }, [])
+
+            return res.render("search/index", {products, search, categories})
         }
         catch(err) {
             console.error(err)
