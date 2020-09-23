@@ -601,3 +601,14 @@ form .item #photos-preview img {
     max-width: 60%;
 }
 
+/* Validate errors */
+.input .error {
+    background-color: #e74c3c;
+    padding: 4px;
+    border-radius: 4px;
+    color: white;
+    max-width: 40%;
+    margin-top: 4px;
+    text-align: center;
+    cursor: no-drop;
+}
