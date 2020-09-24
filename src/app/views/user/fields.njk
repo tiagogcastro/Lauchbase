@@ -5,7 +5,7 @@
         name="name"
         placeholder="Digite seu nome Completo"
         value="{{ user.name }}"
-        >
+        required>
     </div>
 </div>
 
@@ -33,7 +33,7 @@
 
 {% if not user.id %}
 <div class="item">
-    <div>Repitar Senha</div>
+    <div>Repetir Senha</div>
     <div class="input">
         <input type="password"
         name="passwordRepeat"
@@ -50,7 +50,9 @@
         name="cpf_cnpj"
         placeholder="Digite seu documento"
         value="{{ user.cpf_cnpj }}"
-        onkeydown="Mask.apply(this, 'cpfCnpj')">
+        onkeydown="Mask.apply(this, 'cpfCnpj')"
+        onblur="Validate.apply(this, 'isCpfCnpj')"
+        >
     </div>
 </div>
 
@@ -61,7 +63,9 @@
         name="cep"
         placeholder="99999-999"
         value="{{ user.cep }}"
-        onkeydown="Mask.apply(this, 'cep')">
+        onkeydown="Mask.apply(this, 'cep')"
+        onblur="Validate.apply(this, 'isCep')"
+        >
     </div>
 </div>
 
