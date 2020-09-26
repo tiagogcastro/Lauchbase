@@ -2,27 +2,27 @@
 
 {% block content %}
 
-<section class="container form">
+<section class="user-dashboard container form">
 
-    <form method="POST" action="/products?_method=PUT" enctype="multipart/form-data">
+    <form method="POST" action="/user?_method=PUT">
         <div class="header">
-            <h3>Editar Produto | ID: {{product.id}}</h3>
+            <h3>Detalhes | ID: {{user.id}}</h3>
         </div>
 
         <div class="fields">
-            {% include 'products/fields.njk' %}
+            {% include 'user/fields.njk' %}
             <input type="hidden"
             name="id"
-            value={{product.id}}>
+            value={{user.id}}>
         </div>
 
         <button class="button edit" type="submit">Atualizar</button>
     </form>
 
-    <form id="form-delete" action="/products?_method=DELETE" method="post">
+    <form id="form-delete" action="/user?_method=DELETE" method="post">
         <input type="hidden"
         name="id"
-        value={{product.id}}>
+        value={{user.id}}>
         <button class="button delete" type="submit">Deletar</button>
     </form> 
 </section>
