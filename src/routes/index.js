@@ -14,7 +14,7 @@ routes.use('/users', users)
 routes.get('/ads/create', ProductController.create)
 
 routes.get('/accounts', function(req, res) {
-    return res.redirect('/users/register')
+    return res.redirect('/users/login')
 })
 
 
