@@ -26,7 +26,7 @@ module.exports = {
             console.log(err)
             return res.render('user/register', {
                 user: req.body,
-                error: "Algum erro aconteceu!"
+                error: "Algum erro aconteceu! Tente novamente por favor!"
             })
         }
     },
@@ -54,7 +54,25 @@ module.exports = {
         }catch(err) {
             console.log(err)
             return res.render('user/index', {
+                user: req.body,
                 error: "Algum erro aconteceu!"
+            })
+        }
+    },
+    
+    async delete(req, res) {
+        try {
+            await User.delete(req.body.id)
+            req.session.destroy()
+            return res.render('session/login', {
+                success: "Conta deletada com sucesso! Espero que um dia você possa voltar aqui."
+            })
+
+        }catch(err) {
+            console.error(err)
+            return res.render('user/index', {
+                user: req.body,
+                error: "Erro ao tentar deletar sua conta! Tente novamente."
             })
         }
     }

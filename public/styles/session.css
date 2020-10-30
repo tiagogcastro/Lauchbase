@@ -1,4 +1,5 @@
-section.login.container {
+section.login.container,
+section.forgot.container {
     max-width: 500px;
 }
 
@@ -17,7 +18,8 @@ section.login.container .footer ul {
     align-items: flex-end;
 }
 
-section.login.container .footer ul li {
+section.login.container .footer ul li,
+section.forgot.container .footer ul li {
     display: flex;
     flex-direction: column;
     align-items: center;

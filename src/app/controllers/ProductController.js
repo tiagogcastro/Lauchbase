@@ -4,18 +4,22 @@ const Category = require('../models/Category')
 const Product = require('../models/Product')
 const File = require('../models/File')
 
+const { onlyUsers } = require('../middlewares/session')
 
 module.exports = {
-    create(req, res) {
+    async create(req, res) {
         // Pegar categorias
-        Category.all()
-        .then(function(results) {
-            const categories = results.rows
-            return res.render('products/create.njk', { categories })
-        
-        }).catch(function(err) {
-            throw new Error(err)
-        })
+        try{
+            const results = await Category.all()
+            let categories = results.rows
+            return res.render('products/create', { categories })
+        } catch(err) {
+            return res.render('products/create', {
+                categories,
+                error: "Houve um erro inesperado ou não foi possível carregar as categorias."
+            })
+        }
+
     },
 
     async post(req, res) {
@@ -23,13 +27,24 @@ module.exports = {
 
         for(key of keys) {
             if (req.body[key] == "") {
-                return res.send('Please, fill all fields')
+                const results = await Category.all()
+                let categories = results.rows
+                return res.render(`products/create`, {
+                    categories,
+                    product: req.body,
+                    error: 'Por favor, preencha todos os campos!'
+                })
             }
         }
 
         if (req.files.length == 0) {
-            return res.send('Please, send at least one image')
+            return res.render(`products/create`, {
+                product: req.body,
+                error: 'Por favor, coloque pelo menos uma imagem! '
+            })
         }
+
+        req.body.user_id = req.session.userId
 
         // Get categories
         let results = await Product.create(req.body)
@@ -46,10 +61,18 @@ module.exports = {
 
     async show(req, res) {
         let results = await Product.find(req.params.id)
-        const product = results.rows[0]
+        const product = results.rows[0] 
 
-        if (!product) {
-            return res.send("Product Not Found!")
+        if(!product && req.session.userId) {
+            return res.render('products/create', {
+                error: "Produto não encontrado. Crie um agora!"
+            })
+        }
+
+        if (!product && onlyUsers) {
+            return res.render('session/login', {
+                error: "Produto não encontrado. Entre em sua conta e crie um agora!"
+            })
         }
 
         const { day, hour, minutes, month} = date(product.updated_at)
@@ -77,7 +100,9 @@ module.exports = {
         const product = results.rows[0]
 
         if(!product) {
-            return res.send("product not found!")
+            return res.render('products/edit.njk', {
+                error: "Produto não encontrado!"
+            })
         }
 
         product.price = formatPrice(product.price)
@@ -103,7 +128,10 @@ module.exports = {
 
         for(key of keys) {
             if (req.body[key] == "" && key != "removed_files") {
-                return res.send('Please, fill all fields')
+                return res.render(`products/edit/${req.body.id}`, {
+                    product: req.body,
+                    error: 'Por favor, preencha todos os campos! '
+                })
             } 
         }
 
@@ -121,7 +149,6 @@ module.exports = {
             const removedFilesPromise = removedFiles.map(id => File.delete(id))
             await Promise.all(removedFilesPromise)
         }
-
 
         req.body.price = req.body.price.replace(/\D/g, "")
 

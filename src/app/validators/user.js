@@ -64,33 +64,36 @@ async function post(req, res, next) {
 }
 
 async function update(req, res, next) {
-    // all fields
-    const fillAllFields = checkAllFields(req.body)
+    const { id, password, email, cpf_cnpj, cep} = req.body
+    try {      
+        // all fields
+        const fillAllFields = checkAllFields(req.body)
 
-    if(fillAllFields) {
-        return res.render('user/index', fillAllFields)
+        if(fillAllFields) {
+            return res.render('user/index', fillAllFields)
+        }
+
+        // has password
+        if (!password) return res.render('user/index', {
+            user: req.body,
+            error: "Coloque sua senha para atualizar seu cadastro."
+        })
+        
+        // password match
+        const user = await User.findOne({where: {id}})
+        const passed = await compare(password, user.password)
+
+        if(!passed) return res.render('user/index', {
+            user: req.body,
+            error: "Senha incorreta."
+        })
+
+        req.user = user
+
+        next()
+    } catch (err) {
+        console.error(err)
     }
-    const { id, password } = req.body
-    // has password
-    if (!password) return res.render('user/index', {
-        user: req.body,
-        error: "Coloque sua senha para atualizar seu cadastro."
-    })
-
-    const user = await User.findOne({where: {id}})
-
-    const passed = await compare(password, user.password)
-
-    if(!passed) return res.render('user/index', {
-        user: req.body,
-        error: "Senha incorreta."
-    })
-
-    req.user = user
-
-    next()
-
-    // password match
 }
 
 module.exports = {
